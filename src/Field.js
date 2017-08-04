@@ -5,10 +5,10 @@ class Field extends Component {
   drawCards() {
     return (
       <g>
-        <Card x="100" y="200" />
-        <Card x="300" y="200" />
+        <Card x="100" y="200" side="front" />
+        <Card x="300" y="200" side="back" />
         <Card x="100" y="400" />
-        <Card x="300" y="400" />
+        <Card x="300" y="400" side="back" />
       </g>
     );
   }
