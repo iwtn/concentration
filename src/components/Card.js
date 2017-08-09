@@ -10,17 +10,15 @@ class Card extends Component {
     const { side, onFlip } = this.props;
     const color = (side === 'front') ? 'red' : 'blue';
     return (
-      <svg>
-        <rect
-          onClick={onFlip}
-          x={this.props.x}
-          y={this.props.y}
-          width="100"
-          height="162"
-          fill={color}
-          strokeWidth="0"
-        />
-      </svg>
+      <rect
+        onClick={onFlip}
+        x={this.props.x}
+        y={this.props.y}
+        width="100"
+        height="162"
+        fill={color}
+        strokeWidth="0"
+      />
     )
   }
 }
