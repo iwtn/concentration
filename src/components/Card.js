@@ -8,17 +8,34 @@ class Card extends Component {
 
   render() {
     const { side, onFlip } = this.props;
-    const color = (side === 'front') ? 'red' : 'blue';
+    let color = 'blue';
+    let text = '';
+    if (side === 'front') {
+      color = 'red';
+      text = '1';
+    }
     return (
-      <rect
-        onClick={onFlip}
+      <g
         x={this.props.x}
         y={this.props.y}
-        width="100"
-        height="162"
-        fill={color}
-        strokeWidth="0"
-      />
+      >
+        <rect
+          onClick={onFlip}
+          width="100"
+          height="162"
+          fill={color}
+          strokeWidth="0"
+        />
+        <text
+          x="10"
+          y="50"
+          font-family="Verdana"
+          font-size="35"
+          fill="black"
+        >
+          {text}
+        </text>
+      </g>
     )
   }
 }
