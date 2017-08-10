@@ -28,9 +28,9 @@ class Card extends Component {
         />
         <text
           x="10"
-          y="50"
-          font-family="Verdana"
-          font-size="35"
+          y="35"
+          fontFamily="Verdana"
+          fontSize="35"
           fill="black"
         >
           {text}
