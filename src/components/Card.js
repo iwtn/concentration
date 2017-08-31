@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 
 class Card extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const { side, onFlip } = this.props;
     let color = 'blue';
@@ -14,10 +10,10 @@ class Card extends Component {
       color = 'red';
       text = '1';
     }
+    let transform = "translate(" + this.props.x + "," + this.props.y + ")";
     return (
       <g
-        x={this.props.x}
-        y={this.props.y}
+        transform={transform}
       >
         <rect
           onClick={onFlip}
