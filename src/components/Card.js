@@ -4,11 +4,12 @@ import PropTypes from 'prop-types'
 class Card extends Component {
   render() {
     const { side, onFlip } = this.props;
+    let { text } = this.props;
     let color = 'blue';
-    let text = '';
     if (side === 'front') {
       color = 'red';
-      text = '1';
+    } else {
+      text = ''
     }
     let transform = "translate(" + this.props.x + "," + this.props.y + ")";
     return (
