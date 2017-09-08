@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { createStore } from 'redux'
-import Card from './components/Card'
+import Field from './components/Field'
 
-function cards(state = [], action) {
+const cards = (state = [], action) => {
   switch (action.type) {
     case 'ADD_CARD':
       return state.concat([action.card])
@@ -16,33 +16,37 @@ function cards(state = [], action) {
   }
 }
 
+const onFlip = (i) => {
+  return () => {
+    store.dispatch({ type: 'FLIP', index: i })
+  }
+}
+
+let cnt = 1
+const addContinuousCard = () => {
+  cnt++
+  return () => {
+    store.dispatch({
+      type: 'ADD_CARD',
+      card: {
+        text: cnt,
+        side: 'back'
+      }
+    })
+  }
+}
+
 let store = createStore(cards, [{text: 1, side: 'back'}])
 const rootEl = document.getElementById('root')
 
 class Root extends Component {
   render() {
     return (
-      <g>
-        {store.getState().map((c, i) =>
-          <Card
-            key={i}
-            side={c.side}
-            text={c.text}
-            onFlip={() => store.dispatch({ type: 'FLIP', index: i })}
-            x={150 * i}
-            y="0"
-          />,
-        )}
-        <circle cx="50" cy="300" r="50"
-          onClick={() => store.dispatch({
-            type: 'ADD_CARD',
-            card: {
-              text: 2,
-              side: 'back'
-            }
-          })}
-        />
-      </g>
+      <Field
+        cards={store.getState()}
+        onCardClick={onFlip}
+        addCard={addContinuousCard}
+      />
     )
   }
 }
