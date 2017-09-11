@@ -3,21 +3,27 @@ import PropTypes from 'prop-types'
 import Card from './Card'
 
 class Field extends Component {
+  drawCard(i, c, onCardClick) {
+    return (
+      <Card
+        key={i}
+        side={c.side}
+        text={c.text}
+        onFlip={onCardClick(i)}
+        x={150 * i}
+        y="0"
+      />
+    )
+  }
+
   render() {
     const { cards, onCardClick, addCard } = this.props;
 
     return (
       <g>
-        {cards.map((c, i) =>
-          <Card
-            key={i}
-            side={c.side}
-            text={c.text}
-            onFlip={onCardClick(i)}
-            x={150 * i}
-            y="0"
-          />,
-        )}
+        <g>
+          {cards.map((c, i) => this.drawCard(i, c, onCardClick))}
+        </g>
         <circle
           cx="50"
           cy="300"
