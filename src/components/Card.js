@@ -18,8 +18,8 @@ class Card extends Component {
       >
         <rect
           onClick={onFlip}
-          width="100"
-          height="162"
+          width={w}
+          height={h}
           fill={color}
           strokeWidth="3"
           stroke="black"

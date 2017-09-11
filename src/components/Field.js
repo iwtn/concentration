@@ -4,6 +4,9 @@ import Card from './Card'
 
 class Field extends Component {
   drawCard(i, c, onCardClick) {
+    const w = 100
+    const h = 162
+
     return (
       <Card
         key={i}
@@ -12,8 +15,8 @@ class Field extends Component {
         onFlip={onCardClick(i)}
         x={150 * i}
         y="0"
-        w={100}
-        h={162}
+        w={w}
+        h={h}
       />
     )
   }
