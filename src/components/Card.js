@@ -21,7 +21,10 @@ class Card extends Component {
           width="100"
           height="162"
           fill={color}
-          strokeWidth="0"
+          strokeWidth="3"
+          stroke="black"
+          rx="10"
+          ry="10"
         />
         <text
           x="10"
