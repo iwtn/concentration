@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 class Card extends Component {
   render() {
-    const { side, onFlip } = this.props;
+    const { side, onFlip, x, y, w, h } = this.props;
     let { text } = this.props;
     let color = 'blue';
     if (side === 'front') {
@@ -11,7 +11,7 @@ class Card extends Component {
     } else {
       text = ''
     }
-    let transform = "translate(" + this.props.x + "," + this.props.y + ")";
+    let transform = "translate(" + x + "," + y + ")";
     return (
       <g
         transform={transform}

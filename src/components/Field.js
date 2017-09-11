@@ -12,6 +12,8 @@ class Field extends Component {
         onFlip={onCardClick(i)}
         x={150 * i}
         y="0"
+        w={100}
+        h={162}
       />
     )
   }
