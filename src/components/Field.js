@@ -7,18 +7,35 @@ class Field extends Component {
     const w = 100
     const h = 162
 
+    const { x, y } = this.getPosition(i, 800, 600, w, h, 50, 10)
+
     return (
       <Card
         key={i}
         side={c.side}
         text={c.text}
         onFlip={onCardClick(i)}
-        x={150 * i}
-        y="0"
+        x={x}
+        y={y}
         w={w}
         h={h}
       />
     )
+  }
+
+  getPosition(i, fw, fh, cw, ch, pw, ph) {
+    const ax = cw + pw
+    const ay = ch + ph
+    const col = Math.floor(fw / ax)
+    const row = Math.floor(fh / ay)
+
+    const xp = i % col
+    const yp = Math.floor(i / col)
+
+    return {
+      x: xp * ax,
+      y: yp * ay,
+    }
   }
 
   render() {
