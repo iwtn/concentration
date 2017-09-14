@@ -4,10 +4,10 @@ import Card from './Card'
 
 class Field extends Component {
   drawCard(i, c, onCardClick) {
-    const w = 100
-    const h = 162
+    const w = 50
+    const h = 81
 
-    const { x, y } = this.getPosition(i, 800, 600, w, h, 50, 10)
+    const { x, y } = this.getPosition(i, 800, 600, w, h, 10, 10)
 
     return (
       <Card

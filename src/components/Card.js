@@ -27,10 +27,10 @@ class Card extends Component {
           ry="10"
         />
         <text
-          x="10"
-          y="35"
+          x="5"
+          y="20"
           fontFamily="Verdana"
-          fontSize="35"
+          fontSize="20"
           fill="black"
         >
           {text}
