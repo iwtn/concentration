@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Card from './Card'
 
 class Field extends Component {
-  drawCard(i, c, onCardClick) {
+  drawCard(i, card, onCardClick) {
     const w = 50
     const h = 81
 
@@ -12,8 +12,8 @@ class Field extends Component {
     return (
       <Card
         key={i}
-        side={c.side}
-        text={c.text}
+        side={card.side}
+        num={card.num}
         onFlip={onCardClick(i)}
         x={x}
         y={y}

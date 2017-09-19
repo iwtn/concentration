@@ -29,14 +29,15 @@ const addContinuousCard = () => {
     store.dispatch({
       type: 'ADD_CARD',
       card: {
-        text: cnt,
+        num: cnt,
         side: 'back'
       }
     })
   }
 }
 
-let store = createStore(cards, [{text: 1, side: 'back'}])
+
+let store = createStore(cards, [{num: 1, side: 'back'}])
 const rootEl = document.getElementById('root')
 
 class Root extends Component {

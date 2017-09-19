@@ -4,12 +4,12 @@ import PropTypes from 'prop-types'
 class Card extends Component {
   render() {
     const { side, onFlip, x, y, w, h } = this.props;
-    let { text } = this.props;
+    let { num } = this.props;
     let color = 'blue';
     if (side === 'front') {
       color = 'red';
     } else {
-      text = ''
+      num = ''
     }
     let transform = "translate(" + x + "," + y + ")";
     return (
@@ -33,7 +33,7 @@ class Card extends Component {
           fontSize="20"
           fill="black"
         >
-          {text}
+          {num}
         </text>
       </g>
     )
