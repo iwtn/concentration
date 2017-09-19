@@ -13,7 +13,7 @@ class Field extends Component {
       <Card
         key={i}
         side={card.side}
-        num={card.num}
+        num={card.suit + card.num}
         onFlip={onCardClick(i)}
         x={x}
         y={y}

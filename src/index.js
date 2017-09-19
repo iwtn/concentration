@@ -36,8 +36,19 @@ const addContinuousCard = () => {
   }
 }
 
+let deck = [];
 
-let store = createStore(cards, [{num: 1, side: 'back'}])
+['♠', '♣', '♦', '♥'].forEach( (suit) => {
+  for (let i=0; i<13; i++) {
+    deck.push({
+      num: i+1,
+      suit: suit,
+      side: 'back',
+    })
+  }
+})
+
+let store = createStore(cards, deck)
 const rootEl = document.getElementById('root')
 
 class Root extends Component {

@@ -30,7 +30,7 @@ class Card extends Component {
           x="5"
           y="20"
           fontFamily="Verdana"
-          fontSize="20"
+          fontSize="15"
           fill="black"
         >
           {num}
