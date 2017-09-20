@@ -27,7 +27,6 @@ class Field extends Component {
     const ax = cw + pw
     const ay = ch + ph
     const col = Math.floor(fw / ax)
-    const row = Math.floor(fh / ay)
 
     const xp = i % col
     const yp = Math.floor(i / col)
