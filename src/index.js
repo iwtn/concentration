@@ -39,13 +39,21 @@ const addContinuousCard = () => {
 let deck = [];
 
 ['♠', '♣', '♦', '♥'].forEach( (suit) => {
-  for (let i=0; i<13; i++) {
+  for (let i=0; i<10; i++) {
     deck.push({
       num: i+1,
       suit: suit,
       side: 'back',
     })
   }
+
+  ['J', 'Q', 'K'].forEach( (n) => {
+    deck.push({
+      num: n,
+      suit: suit,
+      side: 'back',
+    })
+  })
 })
 
 let store = createStore(cards, deck)
