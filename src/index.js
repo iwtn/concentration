@@ -5,8 +5,6 @@ import Field from './components/Field'
 
 const cards = (state = [], action) => {
   switch (action.type) {
-    case 'ADD_CARD':
-      return state.concat([action.card])
     case 'FLIP':
       let currentSide = state[action.index].side
       state[action.index].side = (currentSide === 'back') ? 'front' : 'back'
@@ -22,22 +20,7 @@ const onFlip = (i) => {
   }
 }
 
-let cnt = 1
-const addContinuousCard = () => {
-  cnt++
-  return () => {
-    store.dispatch({
-      type: 'ADD_CARD',
-      card: {
-        num: cnt,
-        side: 'back'
-      }
-    })
-  }
-}
-
 let deck = [];
-
 ['♠', '♣', '♦', '♥'].forEach( (suit) => {
   for (let i=0; i<10; i++) {
     deck.push({
@@ -65,7 +48,6 @@ class Root extends Component {
       <Field
         cards={store.getState()}
         onCardClick={onFlip}
-        addCard={addContinuousCard}
       />
     )
   }

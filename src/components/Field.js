@@ -38,19 +38,11 @@ class Field extends Component {
   }
 
   render() {
-    const { cards, onCardClick, addCard } = this.props;
+    const { cards, onCardClick } = this.props;
 
     return (
       <g>
-        <g>
-          {cards.map((c, i) => this.drawCard(i, c, onCardClick))}
-        </g>
-        <circle
-          cx="50"
-          cy="300"
-          r="50"
-          onClick={addCard()}
-        />
+        {cards.map((c, i) => this.drawCard(i, c, onCardClick))}
       </g>
     )
   }
@@ -62,7 +54,6 @@ Field.propTypes = {
       side: PropTypes.string.isRequired
     }).isRequired
   ).isRequired,
-  onCardClick: PropTypes.func.isRequired
 }
 
 export default Field;
