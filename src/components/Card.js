@@ -5,9 +5,9 @@ class Card extends Component {
   render() {
     const { side, onFlip, x, y, w, h } = this.props;
     let { num } = this.props;
-    let color = 'blue';
+    let color = '#3dbe3b';
     if (side === 'front') {
-      color = 'red';
+      color = '#f1f1f1';
     } else {
       num = ''
     }
