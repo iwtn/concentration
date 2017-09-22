@@ -21,12 +21,13 @@ const onFlip = (i) => {
 }
 
 let deck = [];
-['♠', '♣', '♦', '♥'].forEach( (suit) => {
+['♠', '♣'].forEach( (suit) => {
   for (let i=0; i<10; i++) {
     deck.push({
       num: i+1,
       suit: suit,
       side: 'back',
+      textColor: 'black',
     })
   }
 
@@ -35,6 +36,27 @@ let deck = [];
       num: n,
       suit: suit,
       side: 'back',
+      textColor: 'black',
+    })
+  })
+});
+
+['♦', '♥'].forEach( (suit) => {
+  for (let i=0; i<10; i++) {
+    deck.push({
+      num: i+1,
+      suit: suit,
+      side: 'back',
+      textColor: 'red',
+    })
+  }
+
+  ['J', 'Q', 'K'].forEach( (n) => {
+    deck.push({
+      num: n,
+      suit: suit,
+      side: 'back',
+      textColor: 'red',
     })
   })
 })

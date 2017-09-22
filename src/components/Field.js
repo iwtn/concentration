@@ -19,6 +19,7 @@ class Field extends Component {
         y={y}
         w={w}
         h={h}
+        textColor={card.textColor}
       />
     )
   }

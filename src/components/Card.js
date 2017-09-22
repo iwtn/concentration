@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 class Card extends Component {
   render() {
-    const { side, onFlip, x, y, w, h } = this.props;
+    const { side, onFlip, x, y, w, h, textColor } = this.props;
     let { num } = this.props;
     let color = '#3dbe3b';
     if (side === 'front') {
@@ -31,7 +31,7 @@ class Card extends Component {
           y="20"
           fontFamily="Verdana"
           fontSize="15"
-          fill="black"
+          fill={textColor}
         >
           {num}
         </text>
