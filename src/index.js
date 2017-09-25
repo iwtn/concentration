@@ -30,23 +30,19 @@ const makeCard = (num, suit, color) => {
 }
 
 let deck = [];
-['♠', '♣'].forEach( (suit) => {
+[
+  {suit: '♠', color: 'black'},
+  {suit: '♣', color: 'black'},
+  {suit: '♠', color: 'red'},
+  {suit: '♣', color: 'red'},
+].forEach( (d) => {
   for (let i=0; i<10; i++) {
-    deck.push(makeCard(i+1, suit, 'black'))
+    deck.push(makeCard(i+1, d.suit, d.color))
   }
   ['J', 'Q', 'K'].forEach( (n) => {
-    deck.push(makeCard(n, suit, 'black'))
+    deck.push(makeCard(n, d.suit, d.color))
   })
 });
-
-['♦', '♥'].forEach( (suit) => {
-  for (let i=0; i<10; i++) {
-    deck.push(makeCard(i+1, suit, 'red'))
-  }
-  ['J', 'Q', 'K'].forEach( (n) => {
-    deck.push(makeCard(n, suit, 'red'))
-  })
-})
 
 let store = createStore(cards, deck)
 const rootEl = document.getElementById('root')
