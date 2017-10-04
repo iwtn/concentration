@@ -44,6 +44,8 @@ let deck = [];
   })
 });
 
+deck.sort(() => (Math.random() - 0.5));
+
 let store = createStore(cards, deck)
 const rootEl = document.getElementById('root')
 
