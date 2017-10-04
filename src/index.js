@@ -3,23 +3,6 @@ import ReactDOM from 'react-dom'
 import { createStore } from 'redux'
 import Field from './components/Field'
 
-const cards = (state = [], action) => {
-  switch (action.type) {
-    case 'FLIP':
-      let currentSide = state[action.index].side
-      state[action.index].side = (currentSide === 'back') ? 'front' : 'back'
-      return state
-    default:
-      return state
-  }
-}
-
-const onFlip = (i) => {
-  return () => {
-    store.dispatch({ type: 'FLIP', index: i })
-  }
-}
-
 const makeCard = (num, suit, color) => {
   return {
     num: num,
@@ -43,17 +26,39 @@ let deck = [];
     deck.push(makeCard(n, d.suit, d.color))
   })
 });
-
 deck.sort(() => (Math.random() - 0.5));
 
-let store = createStore(cards, deck)
+const initialState = {
+  cards: deck,
+  users: ['A', 'B']
+}
+
+const reducer = (state = {}, action) => {
+  switch (action.type) {
+    case 'FLIP':
+      let currentSide = state.cards[action.index].side
+      state.cards[action.index].side = (currentSide === 'back') ? 'front' : 'back'
+      return state
+    default:
+      return state
+  }
+}
+
+const onFlip = (i) => {
+  return () => {
+    store.dispatch({ type: 'FLIP', index: i })
+  }
+}
+
+
+let store = createStore(reducer, initialState)
 const rootEl = document.getElementById('root')
 
 class Root extends Component {
   render() {
     return (
       <Field
-        cards={store.getState()}
+        cards={store.getState().cards}
         onCardClick={onFlip}
       />
     )
