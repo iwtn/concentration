@@ -37,12 +37,21 @@ const reducer = (state = {}, action) => {
   switch (action.type) {
     case 'FLIP':
       let currentSide = state.cards[action.index].side
-      state.cards[action.index].side = (currentSide === 'back') ? 'front' : 'back'
+      if (currentSide === 'back') {
+        state.cards[action.index].side = 'front'
+        setTimeout(() => {
+          store.dispatch({ type: 'FLIP', index: action.index })
+        }, 1000)
+      } else {
+        state.cards[action.index].side = 'back'
+      }
       return state
     default:
       return state
   }
 }
+
+let store = createStore(reducer, initialState)
 
 const onFlip = (i) => {
   return () => {
@@ -51,7 +60,6 @@ const onFlip = (i) => {
 }
 
 
-let store = createStore(reducer, initialState)
 const rootEl = document.getElementById('root')
 
 class Root extends Component {
