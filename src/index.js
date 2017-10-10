@@ -33,18 +33,24 @@ const initialState = {
   users: ['A', 'B']
 }
 
+const flipCard = (card, index) => {
+  let currentSide = card.side
+  if (currentSide === 'back') {
+    card.side = 'front'
+    setTimeout(() => {
+      store.dispatch({ type: 'FLIP', index: index })
+    }, 1000)
+  } else {
+    card.side = 'back'
+  }
+  return card
+}
+
 const reducer = (state = {}, action) => {
   switch (action.type) {
     case 'FLIP':
-      let currentSide = state.cards[action.index].side
-      if (currentSide === 'back') {
-        state.cards[action.index].side = 'front'
-        setTimeout(() => {
-          store.dispatch({ type: 'FLIP', index: action.index })
-        }, 1000)
-      } else {
-        state.cards[action.index].side = 'back'
-      }
+      const card = flipCard(state.cards[action.index], action.index)
+      state.cards[action.index] = card
       return state
     default:
       return state
