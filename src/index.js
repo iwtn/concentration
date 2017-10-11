@@ -34,17 +34,27 @@ const initialState = {
   frontCardIndex: null,
 }
 
+const checkPair = (state, firstCardIndex, secondCardIndex) => {
+  return () => {
+    const firstCard = state.cards[firstCardIndex]
+    const secondCard = state.cards[secondCardIndex]
+    if (firstCard.num == secondCard.num) {
+      console.log('same!!!')
+    } else {
+      store.dispatch({ type: 'FLIP', index: firstCardIndex })
+      store.dispatch({ type: 'FLIP', index: secondCardIndex })
+    }
+    state.frontCardIndex = null
+  }
+}
+
 const flipCard = (state, index) => {
   let card = state.cards[index]
   let currentSide = card.side
   if (currentSide === 'back') {
     card.side = 'front'
     if (state.frontCardIndex != null) {
-      setTimeout(() => {
-        store.dispatch({ type: 'FLIP', index: index })
-        store.dispatch({ type: 'FLIP', index: state.frontCardIndex })
-        state.frontCardIndex = null
-      }, 1000)
+      setTimeout(checkPair(state, index, state.frontCardIndex), 1000)
     } else {
       state.frontCardIndex = index
     }
