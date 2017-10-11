@@ -30,16 +30,24 @@ deck.sort(() => (Math.random() - 0.5));
 
 const initialState = {
   cards: deck,
-  users: ['A', 'B']
+  users: ['A', 'B'],
+  frontCardIndex: null,
 }
 
-const flipCard = (card, index) => {
+const flipCard = (state, index) => {
+  let card = state.cards[index]
   let currentSide = card.side
   if (currentSide === 'back') {
     card.side = 'front'
-    setTimeout(() => {
-      store.dispatch({ type: 'FLIP', index: index })
-    }, 1000)
+    if (state.frontCardIndex != null) {
+      setTimeout(() => {
+        store.dispatch({ type: 'FLIP', index: index })
+        store.dispatch({ type: 'FLIP', index: state.frontCardIndex })
+        state.frontCardIndex = null
+      }, 1000)
+    } else {
+      state.frontCardIndex = index
+    }
   } else {
     card.side = 'back'
   }
@@ -49,8 +57,7 @@ const flipCard = (card, index) => {
 const reducer = (state = {}, action) => {
   switch (action.type) {
     case 'FLIP':
-      const card = flipCard(state.cards[action.index], action.index)
-      state.cards[action.index] = card
+      state.cards[action.index] = flipCard(state, action.index)
       return state
     default:
       return state
