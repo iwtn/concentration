@@ -9,6 +9,7 @@ const makeCard = (num, suit, color) => {
     suit: suit,
     side: 'back',
     textColor: color,
+    got: false,
   }
 }
 
@@ -38,8 +39,10 @@ const checkPair = (state, firstCardIndex, secondCardIndex) => {
   return () => {
     const firstCard = state.cards[firstCardIndex]
     const secondCard = state.cards[secondCardIndex]
-    if (firstCard.num == secondCard.num) {
+    if (firstCard.num === secondCard.num) {
       console.log('same!!!')
+      state.cards[firstCardIndex].got = true
+      state.cards[secondCardIndex].got = true
     } else {
       store.dispatch({ type: 'FLIP', index: firstCardIndex })
       store.dispatch({ type: 'FLIP', index: secondCardIndex })
@@ -67,7 +70,10 @@ const flipCard = (state, index) => {
 const reducer = (state = {}, action) => {
   switch (action.type) {
     case 'FLIP':
-      state.cards[action.index] = flipCard(state, action.index)
+      const card = state.cards[action.index]
+      if (card.got === false) {
+        state.cards[action.index] = flipCard(state, action.index)
+      }
       return state
     default:
       return state
