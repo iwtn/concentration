@@ -43,6 +43,7 @@ const checkPair = (state, firstCardIndex, secondCardIndex) => {
       console.log('same!!!')
       state.cards[firstCardIndex].got = true
       state.cards[secondCardIndex].got = true
+      store.dispatch({ type: 'REFRESH' })
     } else {
       store.dispatch({ type: 'FLIP', index: firstCardIndex })
       store.dispatch({ type: 'FLIP', index: secondCardIndex })
@@ -74,6 +75,8 @@ const reducer = (state = {}, action) => {
       if (card.got === false) {
         state.cards[action.index] = flipCard(state, action.index)
       }
+      return state
+    case 'REFRESH':
       return state
     default:
       return state

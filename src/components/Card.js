@@ -7,7 +7,7 @@ class Card extends Component {
     let txt = card.suit + card.num
     let color = '#3dbe3b';
     if (card.side === 'front') {
-      color = '#f1f1f1';
+      color = (card.got) ? '#cccccc' : '#f1f1f1'
     } else {
       txt = ''
     }
