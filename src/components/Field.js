@@ -6,20 +6,18 @@ class Field extends Component {
   drawCard(i, card, onCardClick) {
     const w = 50
     const h = 81
+    card.w = 50
+    card.h = 81
 
     const { x, y } = this.getPosition(i, 800, 600, w, h, 10, 10)
 
     return (
       <Card
         key={i}
-        side={card.side}
-        num={card.suit + card.num}
+        card={card}
         onFlip={onCardClick(i)}
         x={x}
         y={y}
-        w={w}
-        h={h}
-        textColor={card.textColor}
       />
     )
   }

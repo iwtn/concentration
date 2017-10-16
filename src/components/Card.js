@@ -3,23 +3,24 @@ import PropTypes from 'prop-types'
 
 class Card extends Component {
   render() {
-    const { side, onFlip, x, y, w, h, textColor } = this.props;
-    let { num } = this.props;
+    const { card, onFlip, x, y } = this.props;
+    let txt = card.suit + card.num
     let color = '#3dbe3b';
-    if (side === 'front') {
+    if (card.side === 'front') {
       color = '#f1f1f1';
     } else {
-      num = ''
+      txt = ''
     }
     let transform = "translate(" + x + "," + y + ")";
+
     return (
       <g
         transform={transform}
       >
         <rect
           onClick={onFlip}
-          width={w}
-          height={h}
+          width={card.w}
+          height={card.h}
           fill={color}
           strokeWidth="3"
           stroke="black"
@@ -31,9 +32,9 @@ class Card extends Component {
           y="20"
           fontFamily="Verdana"
           fontSize="15"
-          fill={textColor}
+          fill={card.textColor}
         >
-          {num}
+          {txt}
         </text>
       </g>
     )
@@ -41,8 +42,10 @@ class Card extends Component {
 }
 
 Card.propTypes = {
-  side: PropTypes.string.isRequired,
-  onFlip: PropTypes.func.isRequired
+  card: PropTypes.object.isRequired,
+  onFlip: PropTypes.func.isRequired,
+  x: PropTypes.number.isRequired,
+  y: PropTypes.number.isRequired
 }
 
 export default Card;
