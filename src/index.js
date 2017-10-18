@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import Field from './components/Field'
+import logger from './middleware/logger'
 
 const makeCard = (num, suit, color) => {
   return {
@@ -83,7 +84,11 @@ const reducer = (state = {}, action) => {
   }
 }
 
-let store = createStore(reducer, initialState)
+let store = createStore(
+  reducer,
+  initialState,
+  applyMiddleware(logger)
+)
 
 const onFlip = (i) => {
   return () => {
