@@ -15,7 +15,7 @@ class Field extends Component {
       <Card
         key={i}
         card={card}
-        onFlip={onCardClick(i)}
+        onFlip={onCardClick(card)}
         x={x}
         y={y}
       />

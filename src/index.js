@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom'
 import { createStore, applyMiddleware } from 'redux'
 import Field from './components/Field'
 import logger from './middleware/logger'
+import pair from './middleware/checkPair'
+import reducer from './reducers/index'
 
 const makeCard = (num, suit, color) => {
   return {
@@ -32,67 +34,18 @@ deck.sort(() => (Math.random() - 0.5));
 
 const initialState = {
   cards: deck,
-  users: ['A', 'B'],
-  frontCardIndex: null,
-}
-
-const checkPair = (state, firstCardIndex, secondCardIndex) => {
-  return () => {
-    const firstCard = state.cards[firstCardIndex]
-    const secondCard = state.cards[secondCardIndex]
-    if (firstCard.num === secondCard.num) {
-      console.log('same!!!')
-      state.cards[firstCardIndex].got = true
-      state.cards[secondCardIndex].got = true
-      store.dispatch({ type: 'REFRESH' })
-    } else {
-      store.dispatch({ type: 'FLIP', index: firstCardIndex })
-      store.dispatch({ type: 'FLIP', index: secondCardIndex })
-    }
-    state.frontCardIndex = null
-  }
-}
-
-const flipCard = (state, index) => {
-  let card = state.cards[index]
-  let currentSide = card.side
-  if (currentSide === 'back') {
-    card.side = 'front'
-    if (state.frontCardIndex != null) {
-      setTimeout(checkPair(state, index, state.frontCardIndex), 1000)
-    } else {
-      state.frontCardIndex = index
-    }
-  } else {
-    card.side = 'back'
-  }
-  return card
-}
-
-const reducer = (state = {}, action) => {
-  switch (action.type) {
-    case 'FLIP':
-      const card = state.cards[action.index]
-      if (card.got === false) {
-        state.cards[action.index] = flipCard(state, action.index)
-      }
-      return state
-    case 'REFRESH':
-      return state
-    default:
-      return state
-  }
+  users: ['A', 'B']
 }
 
 let store = createStore(
   reducer,
   initialState,
-  applyMiddleware(logger)
+  applyMiddleware(logger, pair)
 )
 
-const onFlip = (i) => {
+const onFlip = (card) => {
   return () => {
-    store.dispatch({ type: 'FLIP', index: i })
+    store.dispatch({ type: 'FLIP', card: card })
   }
 }
 
