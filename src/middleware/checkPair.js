@@ -17,7 +17,7 @@ const pairCheck = (store, first, second) => {
   }
 }
 
-const hogehoge = (frontCards, store, action) => {
+const afterFlip = (frontCards, store, action) => {
   switch (frontCards.length) {
     case 2:
       setTimeout(pairCheck(store, frontCards[0], frontCards[1]), 1000)
@@ -34,7 +34,7 @@ const pair = store => next => action => {
   switch (action.type) {
     case 'FLIP':
       const frontCards = getFrontCardNum(state.cards)
-      hogehoge(frontCards, store, action)
+      afterFlip(frontCards, store, action)
       break
     default:
       break
