@@ -12,8 +12,7 @@ const pairCheck = (store, first, second) => {
       second.got = true
       store.dispatch({ type: 'REFRESH' })
     } else {
-      store.dispatch({ type: 'FLIP', card: first })
-      store.dispatch({ type: 'FLIP', card: second })
+      store.dispatch({ type: 'ALL_BACK' })
     }
   }
 }

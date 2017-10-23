@@ -8,6 +8,16 @@ const flipCard = (state, card) => {
   return card
 }
 
+const allBack = (cards) => {
+  const backedCards = cards.map( (card) => {
+    if (card.got === false) {
+      card.side = 'back'
+    }
+    return card
+  })
+  return backedCards
+}
+
 const reducer = (state = {}, action) => {
   switch (action.type) {
     case 'FLIP':
@@ -15,6 +25,9 @@ const reducer = (state = {}, action) => {
       if (card.got === false) {
         flipCard(state, card)
       }
+      return state
+    case 'ALL_BACK':
+      state.cards = allBack(state.cards)
       return state
     case 'REFRESH':
       return state
