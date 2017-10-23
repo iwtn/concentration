@@ -17,7 +17,7 @@ const reducer = (state = {}, action) => {
   switch (action.type) {
     case 'FLIP':
       const card = action.card
-      if (card.got === false) {
+      if (state.isStopFlip === false) {
         flipCard(state, card)
       }
       return state

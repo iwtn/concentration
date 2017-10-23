@@ -17,7 +17,7 @@ const pairCheck = (store, first, second) => {
   }
 }
 
-const afterFlip = (frontCards, store, action) => {
+const afterFlip = (frontCards, store) => {
   switch (frontCards.length) {
     case 2:
       setTimeout(pairCheck(store, frontCards[0], frontCards[1]), 1000)
@@ -28,13 +28,16 @@ const afterFlip = (frontCards, store, action) => {
 }
 
 const pair = store => next => action => {
-  let result = next(action)
   let state = store.getState()
+  const beforeFrontCards = getFrontCardNum(state.cards)
+  state.isStopFlip = (beforeFrontCards.length >= 2)
 
+  let result = next(action)
+
+  const afterFrontCards = getFrontCardNum(state.cards)
   switch (action.type) {
     case 'FLIP':
-      const frontCards = getFrontCardNum(state.cards)
-      afterFlip(frontCards, store, action)
+      afterFlip(afterFrontCards, store)
       break
     default:
       break
