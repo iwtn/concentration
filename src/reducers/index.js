@@ -1,10 +1,5 @@
 const flipCard = (state, card) => {
-  let currentSide = card.side
-  if (currentSide === 'back') {
-    card.side = 'front'
-  } else {
-    card.side = 'back'
-  }
+  card.side = 'front'
   return card
 }
 
