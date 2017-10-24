@@ -37,7 +37,9 @@ const pair = store => next => action => {
   const afterFrontCards = getFrontCardNum(state.cards)
   switch (action.type) {
     case 'FLIP':
-      afterFlip(afterFrontCards, store)
+      if (state.isStopFlip === false) {
+        afterFlip(afterFrontCards, store)
+      }
       break
     default:
       break
