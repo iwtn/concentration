@@ -7,7 +7,14 @@ class Card extends Component {
     let txt = card.suit + card.num
     let color = '#3dbe3b';
     if (card.side === 'front') {
-      color = (card.got) ? '#cccccc' : '#f1f1f1'
+      color = '#f1f1f1'
+      if (card.got) {
+        if (card.gotBy === 'A') {
+          color = '#ffcccc'
+        } else {
+          color = '#ccccff'
+        }
+      }
     } else {
       txt = ''
     }

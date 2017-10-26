@@ -23,6 +23,11 @@ const reducer = (state = {}, action) => {
       return state
     case 'ALL_BACK':
       state.cards = allBack(state.cards)
+      if (state.currentUser === 'A') {
+        state.currentUser =  'B'
+      } else {
+        state.currentUser =  'A'
+      }
       return state
     case 'REFRESH':
       return state

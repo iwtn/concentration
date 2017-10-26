@@ -10,6 +10,8 @@ const pairCheck = (store, first, second) => {
       console.log('same!!!')
       first.got = true
       second.got = true
+      first.gotBy = store.getState().currentUser
+      second.gotBy = store.getState().currentUser
       store.dispatch({ type: 'REFRESH' })
     } else {
       store.dispatch({ type: 'ALL_BACK' })
