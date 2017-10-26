@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
 import { createStore, applyMiddleware } from 'redux'
 import Field from './components/Field'
+import User from './components/User'
 import logger from './middleware/logger'
 import pair from './middleware/checkPair'
 import reducer from './reducers/index'
@@ -52,16 +53,24 @@ const onFlip = (card) => {
 
 const rootEl = document.getElementById('root')
 
-class Root extends Component {
-  render() {
-    return (
-      <Field
-        cards={store.getState().cards}
-        onCardClick={onFlip}
-      />
-    )
-  }
-}
+const Root = (props) => (
+  <g>
+    <Field
+      cards={store.getState().cards}
+      onCardClick={onFlip}
+    />
+    <User
+      x="100"
+      y="400"
+      color="red"
+    />
+    <User
+      x="700"
+      y="400"
+      color="blue"
+    />
+  </g>
+)
 
 const render = () => ReactDOM.render(
   <Root />,
