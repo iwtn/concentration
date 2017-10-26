@@ -10,14 +10,39 @@ const User = (props) => (
       strokeWidth="3"
       stroke={props.color}
     />
-    <circle
-      cx={props.x}
-      cy={props.y}
-      r="10"
-      fill={props.color}
-      strokeWidth="0"
-    />
+    {( () => {
+      if (props.turn) {
+        return (
+          <circle
+            cx={props.x}
+            cy={props.y}
+            r="10"
+            fill={props.color}
+            strokeWidth="0"
+          />
+        )
+      }
+    })()}
   </g>
 )
 
-export default User
+const UserState = (props) => {
+  return (
+    <g>
+      <User
+        x="100"
+        y="400"
+        color="red"
+        turn={props.currentUser === 'A'}
+      />
+      <User
+        x="700"
+        y="400"
+        color="blue"
+        turn={props.currentUser === 'B'}
+      />
+    </g>
+  )
+}
+
+export default UserState

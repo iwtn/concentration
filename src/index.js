@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { createStore, applyMiddleware } from 'redux'
 import Field from './components/Field'
-import User from './components/User'
+import UserState from './components/User'
 import logger from './middleware/logger'
 import pair from './middleware/checkPair'
 import reducer from './reducers/index'
@@ -35,7 +35,8 @@ deck.sort(() => (Math.random() - 0.5));
 
 const initialState = {
   cards: deck,
-  users: ['A', 'B']
+  users: ['A', 'B'],
+  currentUser: 'A',
 }
 
 let store = createStore(
@@ -59,15 +60,8 @@ const Root = (props) => (
       cards={store.getState().cards}
       onCardClick={onFlip}
     />
-    <User
-      x="100"
-      y="400"
-      color="red"
-    />
-    <User
-      x="700"
-      y="400"
-      color="blue"
+    <UserState
+      currentUser={store.getState().currentUser}
     />
   </g>
 )
