@@ -13,6 +13,12 @@ const allBack = (cards) => {
   return backedCards
 }
 
+const countGotCards = (cards, playerName) => {
+  return cards.filter( (card) => {
+    return (card.got && card.gotBy === playerName)
+  }).length
+}
+
 const reducer = (state = {}, action) => {
   switch (action.type) {
     case 'FLIP':
@@ -30,6 +36,9 @@ const reducer = (state = {}, action) => {
       }
       return state
     case 'REFRESH':
+      state.users.forEach( (user) => {
+        user.gotCount = countGotCards(state.cards, user.name)
+      })
       return state
     default:
       return state

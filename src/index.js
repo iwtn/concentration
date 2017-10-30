@@ -35,7 +35,10 @@ deck.sort(() => (Math.random() - 0.5));
 
 const initialState = {
   cards: deck,
-  users: ['A', 'B'],
+  users: [
+    { name: 'A', gotCount: 0 },
+    { name: 'B', gotCount: 0 },
+  ],
   currentUser: 'A',
 }
 
