@@ -65,6 +65,7 @@ const Root = (props) => (
     />
     <UserState
       currentUser={store.getState().currentUser}
+      users={store.getState().users}
     />
   </g>
 )

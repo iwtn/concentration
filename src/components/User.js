@@ -10,6 +10,15 @@ const User = (props) => (
       strokeWidth="3"
       stroke={props.color}
     />
+    <text
+      x={props.x}
+      y={parseInt(props.y, 10) + 40}
+      fontFamily="Verdana"
+      fontSize="15"
+      fill="black"
+    >
+      {props.user.gotCount / 2}
+    </text>
     {( () => {
       if (props.turn) {
         return (
@@ -26,23 +35,23 @@ const User = (props) => (
   </g>
 )
 
-const UserState = (props) => {
-  return (
-    <g>
-      <User
-        x="100"
-        y="400"
-        color="red"
-        turn={props.currentUser === 'A'}
-      />
-      <User
-        x="700"
-        y="400"
-        color="blue"
-        turn={props.currentUser === 'B'}
-      />
-    </g>
-  )
-}
+const UserState = (props) => (
+  <g>
+    <User
+      x="100"
+      y="400"
+      color="red"
+      user={props.users[0]}
+      turn={props.currentUser === 'A'}
+    />
+    <User
+      x="700"
+      y="400"
+      color="blue"
+      user={props.users[1]}
+      turn={props.currentUser === 'B'}
+    />
+  </g>
+)
 
 export default UserState
