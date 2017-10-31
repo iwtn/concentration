@@ -35,7 +35,7 @@ const reducer = (state = {}, action) => {
         state.currentUser =  'A'
       }
       return state
-    case 'REFRESH':
+    case 'COUNT':
       state.users.forEach( (user) => {
         user.gotCount = countGotCards(state.cards, user.name)
       })

@@ -12,7 +12,7 @@ const pairCheck = (store, first, second) => {
       second.got = true
       first.gotBy = store.getState().currentUser
       second.gotBy = store.getState().currentUser
-      store.dispatch({ type: 'REFRESH' })
+      store.dispatch({ type: 'COUNT' })
     } else {
       store.dispatch({ type: 'ALL_BACK' })
     }
