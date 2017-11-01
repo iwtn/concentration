@@ -1,12 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { createStore, applyMiddleware } from 'redux'
+
 import Field from './components/Field'
 import UserState from './components/User'
 import ResetButton from './components/ResetButton'
+
 import logger from './middleware/logger'
 import pair from './middleware/checkPair'
+
 import reducer from './reducers/index'
+
 import makeDeck from './makeDeck'
 
 const initialState = () => {
