@@ -7,36 +7,11 @@ import ResetButton from './components/ResetButton'
 import logger from './middleware/logger'
 import pair from './middleware/checkPair'
 import reducer from './reducers/index'
-
-const makeCard = (num, suit, color) => {
-  return {
-    num: num,
-    suit: suit,
-    side: 'back',
-    textColor: color,
-    got: false,
-  }
-}
-
-let deck = [];
-[
-  {suit: '♠', color: 'black'},
-  {suit: '♣', color: 'black'},
-  {suit: '♠', color: 'red'},
-  {suit: '♣', color: 'red'},
-].forEach( (d) => {
-  for (let i=0; i<10; i++) {
-    deck.push(makeCard(i+1, d.suit, d.color))
-  }
-  ['J', 'Q', 'K'].forEach( (n) => {
-    deck.push(makeCard(n, d.suit, d.color))
-  })
-});
-deck.sort(() => (Math.random() - 0.5));
+import makeDeck from './makeDeck'
 
 const initialState = () => {
   return {
-    cards: deck,
+    cards: makeDeck(),
     users: [
       { name: 'A', gotCount: 0 },
       { name: 'B', gotCount: 0 },
