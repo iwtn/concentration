@@ -1,14 +1,14 @@
-import React from 'react'
+import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, bindActionCreators } from 'redux'
+import { Provider, connect } from 'react-redux'
 
-import Field from './components/Field'
-import UserState from './components/User'
-import ResetButton from './components/ResetButton'
+import App from './components/App'
 
 import logger from './middleware/logger'
 import pair from './middleware/checkPair'
 
+import * as actions from './actions'
 import reducer from './reducers/index'
 
 import makeDeck from './makeDeck'
@@ -30,32 +30,12 @@ let store = createStore(
   applyMiddleware(logger, pair)
 )
 
-const onFlip = (card) => {
-  return () => {
-    store.dispatch({ type: 'FLIP', card: card })
-  }
-}
-
-
-const rootEl = document.getElementById('root')
-
-const Root = (props) => (
-  <g>
-    <Field
-      cards={store.getState().cards}
-      onCardClick={onFlip}
-    />
-    <UserState
-      currentUser={store.getState().currentUser}
-      users={store.getState().users}
-    />
-    <ResetButton />
-  </g>
-)
 
 const render = () => ReactDOM.render(
-  <Root />,
-  rootEl
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
 )
 
 render()
