@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 
-import Field from './components/Field'
-import UserState from './components/User'
-import ResetButton from './components/ResetButton'
+import Field from './Field'
+import UserState from './User'
+import ResetButton from './ResetButton'
 
 class App extends Component {
   render() {

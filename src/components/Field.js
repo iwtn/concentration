@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import Card from './Card'
+import { flipCard } from '../actions'
 
 class Field extends Component {
   drawCard(i, card, onCardClick) {
-    const w = 50
-    const h = 81
     card.w = 50
     card.h = 81
 
-    const { x, y } = this.getPosition(i, 800, 600, w, h, 10, 10)
+    const { x, y } = this.getPosition(i, 800, 600, card.w, card.h, 10, 10)
 
     return (
       <Card
         key={i}
         card={card}
-        onFlip={onCardClick(card)}
+        onFlip={onCardClick}
         x={x}
         y={y}
       />
@@ -37,13 +36,33 @@ class Field extends Component {
   }
 
   render() {
-    const { cards, onCardClick } = this.props;
+    const { cards } = this.props;
+    const onCardClick = (card) => {
+      return () => {
+        dispatch(flipCard(card))
+      }
+    }
 
     return (
       <g>
         {cards.map((c, i) => this.drawCard(i, c, onCardClick))}
       </g>
     )
+  }
+}
+
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    active: ownProps.filter === state.visibilityFilter
+  }
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    onClick: () => {
+      dispatch(setVisibilityFilter(ownProps.filter))
+    }
   }
 }
 
@@ -54,5 +73,10 @@ Field.propTypes = {
     }).isRequired
   ).isRequired,
 }
+
+const FilterLink = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Link)
 
 export default Field;
