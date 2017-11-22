@@ -1,3 +1,14 @@
+import makeDeck from './../makeDeck'
+
+const initialState = {
+  cards: makeDeck(),
+  users: [
+    { name: 'A', gotCount: 0 },
+    { name: 'B', gotCount: 0 },
+  ],
+  currentUser: 'A',
+}
+
 const allBack = (cards) => {
   const backedCards = cards.map( (card) => {
     if (card.got === false) {
@@ -8,7 +19,7 @@ const allBack = (cards) => {
   return backedCards
 }
 
-const field = (state = {}, action) => {
+const field = (state = initialState, action) => {
   switch (action.type) {
     case 'ALL_BACK':
       state.cards = allBack(state.cards)

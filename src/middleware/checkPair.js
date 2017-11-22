@@ -31,15 +31,15 @@ const afterFlip = (frontCards, store) => {
 
 const pair = store => next => action => {
   let state = store.getState()
-  const beforeFrontCards = getFrontCardNum(state.cards)
-  state.isStopFlip = (beforeFrontCards.length >= 2)
+  const beforeFrontCards = getFrontCardNum(state.field.cards)
+  state.field.isStopFlip = (beforeFrontCards.length >= 2)
 
   let result = next(action)
 
-  const afterFrontCards = getFrontCardNum(state.cards)
+  const afterFrontCards = getFrontCardNum(state.field.cards)
   switch (action.type) {
     case 'FLIP':
-      if (state.isStopFlip === false) {
+      if (state.field.isStopFlip === false) {
         afterFlip(afterFrontCards, store)
       }
       break

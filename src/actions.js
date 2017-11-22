@@ -1,5 +1,3 @@
-import { createAction } from 'redux-actions';
-
 export const flipCard = (card) => {
   return {
     type: 'FLIP',
