@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import Field from './Field'
+import FieldWithCard from './Field'
 
         /*
 import UserState from './User'
@@ -13,7 +13,7 @@ class App extends Component {
   render() {
     return (
       <g>
-        <Field />
+        <FieldWithCard />
       </g>
     )
   }

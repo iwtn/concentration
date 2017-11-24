@@ -14,7 +14,7 @@ const drawCard = (i, card, onCardClick) => {
     <Card
       key={i}
       card={card}
-      onFlip={onCardClick(card)}
+      onFlip={() => onCardClick(card)}
       x={x}
       y={y}
     />
@@ -50,15 +50,15 @@ Field.propTypes = {
 }
 
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     cards: state.field.cards
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    onCardClick: (card) => {
+    onCardClick: card => {
       dispatch(flipCard(card))
     }
   }

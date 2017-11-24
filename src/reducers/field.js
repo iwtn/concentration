@@ -19,7 +19,18 @@ const allBack = (cards) => {
   return backedCards
 }
 
+const flipCard = (cards, card) => {
+  const flippedCards = cards.map( (c) => {
+    if (card === c) {
+      c.side = 'front'
+    }
+    return c
+  })
+  return flippedCards
+}
+
 const field = (state = initialState, action) => {
+  const card = action.card
   switch (action.type) {
     case 'ALL_BACK':
       state.cards = allBack(state.cards)
@@ -27,6 +38,11 @@ const field = (state = initialState, action) => {
         state.currentUser =  'B'
       } else {
         state.currentUser =  'A'
+      }
+      return state
+    case 'FLIP':
+      if (state.isStopFlip === false) {
+        state.cards = flipCard(state.cards, card)
       }
       return state
     default:

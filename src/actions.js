@@ -1,7 +1,7 @@
 export const flipCard = (card) => {
   return {
     type: 'FLIP',
-    card: card
+    card
   }
 }
 
